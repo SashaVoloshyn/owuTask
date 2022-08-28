@@ -1,0 +1,12 @@
+extends layout
+block content
+    div
+        h3 There is a new offer for you!
+    ul
+        li Company: #{position_company}
+        li Category: #{position_category}
+        li Level: #{position_level}
+        li Japanese required: #{position_japaneseRequired}
+
+    if position_description
+        include description

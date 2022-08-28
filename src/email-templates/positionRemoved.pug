@@ -1,0 +1,12 @@
+extends layout
+block content
+    div
+        h3 Unfortunately, the offer is no longer active.
+    ul
+        li Company: #{position_company}
+        li Category: #{position_category}
+        li Level: #{position_level}
+        li Japanese required: #{position_japaneseRequired}
+
+    if position_description
+        include description

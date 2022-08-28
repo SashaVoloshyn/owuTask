@@ -1,0 +1,7 @@
+.idea
+node_modules
+dist
+package-lock.json
+.env
+# Project exclude paths
+/src/app.js
