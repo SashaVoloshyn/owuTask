@@ -10,10 +10,8 @@ class ApplicantController {
     public async createOne(req: IRequestExtended, res: Response, next: NextFunction): Promise<void> {
         try {
             const applicantToAdd = req.applicantToAdd!;
-            console.log(applicantToAdd)
 
             const applicantCreated = await applicantRepository.addOne(applicantToAdd);
-            console.log(applicantCreated);
 
             if (!applicantCreated) {
                 next(new ErrorHandler(
@@ -32,10 +30,8 @@ class ApplicantController {
 
     public async updateOne(req: IRequestExtended, res: Response, next: NextFunction): Promise<void> {
         try {
-            const  _id = req._id as any;
+            const _id = req._id as any;
             const applicantToSet = req.applicantToSet!;
-            console.log(applicantToSet);
-            console.log(_id);
 
             const applicantUpdated = await applicantRepository.updateOne({ _id, applicantToSet });
 

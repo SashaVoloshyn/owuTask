@@ -1,19 +1,19 @@
 import { NextFunction, Response } from 'express';
 
-import {IRequestExtended} from "../interfaces";
-import {paramsIdSchema, positionSearchParams, positionToAddSchema, positionToPatchSchema} from "../utils";
-import {ErrorHandler} from "../errors";
-import {errorsMessagesConstant} from "../constants";
-import {HttpMessageEnum, HttpStatusEnum} from "../enums";
-import {PositionToAdd, PositionToPatch, QueryParams} from "../types";
-import {positionRepository} from "../repositories";
+import { IRequestExtended } from '../interfaces';
+import {
+    paramsIdSchema, positionSearchParams, positionToAddSchema, positionToPatchSchema,
+} from '../utils';
+import { ErrorHandler } from '../errors';
+import { errorsMessagesConstant } from '../constants';
+import { HttpMessageEnum, HttpStatusEnum } from '../enums';
+import { PositionToAdd, PositionToPatch, QueryParams } from '../types';
+import { positionRepository } from '../repositories';
 
 class PositionMiddleware {
     public createValidate(req: IRequestExtended, _: Response, next: NextFunction): void {
         const position = req.body as PositionToAdd;
         const { error, value } = positionToAddSchema.validate(position);
-        console.log(value);
-        console.log(error);
 
         if (error) {
             next(new ErrorHandler(
@@ -25,16 +25,12 @@ class PositionMiddleware {
         }
 
         req.positionToAdd = value;
-        console.log(req.positionToAdd);
         next();
     }
 
     public positionUpdateValidate(req: IRequestExtended, _: Response, next: NextFunction): void {
         const position = req.body as PositionToPatch;
         const { error, value } = positionToPatchSchema.validate(position);
-        console.log(value);
-        console.log(error);
-
 
         if (error) {
             next(new ErrorHandler(
@@ -46,13 +42,12 @@ class PositionMiddleware {
         }
 
         req.positionToPatch = value;
-        console.log(req.positionToPatch);
         next();
     }
 
     public checkParamsById(req: IRequestExtended, _: Response, next: NextFunction): void {
         try {
-            const {position_id}  = req.params;
+            const { position_id } = req.params;
             const { error } = paramsIdSchema.validate({ _id: position_id });
 
             if (error) {
@@ -64,7 +59,7 @@ class PositionMiddleware {
                 return;
             }
 
-            req._id =  position_id as string ;
+            req._id = position_id as string;
             next();
         } catch (e) {
             next(e);

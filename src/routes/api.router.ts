@@ -5,7 +5,7 @@ import {
 import { applicantsRouter } from './applicants.router';
 import { HttpMessageEnum, HttpStatusEnum } from '../enums';
 import { ErrorHandler } from '../errors';
-import {positionsRouter} from "./positions.router";
+import { positionsRouter } from './positions.router';
 
 export const apiRouter = Router();
 

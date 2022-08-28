@@ -1,13 +1,11 @@
-import {EmailTypeTemplateEnum} from "../enums";
-import {IEmailContext} from "../interfaces";
-import {emailTemplateConstant} from "../constants";
-import {emailTemplate, mainConfig, transporter} from "../configs";
+import { EmailTypeTemplateEnum } from '../enums';
+import { IEmailContext } from '../interfaces';
+import { emailTemplateConstant } from '../constants';
+import { emailTemplate, mainConfig, transporter } from '../configs';
 
 class EmailService {
     public async sendMessage(email: string, type: EmailTypeTemplateEnum, context: IEmailContext): Promise<void> {
         const { subject, template } = emailTemplateConstant[type];
-
-
 
         const unitedContext = Object.assign(context);
 

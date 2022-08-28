@@ -1,15 +1,14 @@
 import { NextFunction, Response } from 'express';
 
-import {IApplicantModel, IRequestExtended} from "../interfaces";
-import {applicantService, emailService, positionService} from "../services";
-import {ErrorHandler} from "../errors";
-import {errorsMessagesConstant} from "../constants";
-import {EmailTypeTemplateEnum, HttpMessageEnum, HttpStatusEnum} from "../enums";
-import {positionRepository} from "../repositories";
-import {PositionToAdd} from "../types";
+import { IApplicantModel, IRequestExtended } from '../interfaces';
+import { applicantService, emailService, positionService } from '../services';
+import { ErrorHandler } from '../errors';
+import { errorsMessagesConstant } from '../constants';
+import { EmailTypeTemplateEnum, HttpMessageEnum, HttpStatusEnum } from '../enums';
+import { positionRepository } from '../repositories';
+import { PositionToAdd } from '../types';
 
 class PositionController {
-
     public async getAll(req: IRequestExtended, res: Response, next: NextFunction): Promise<void> {
         try {
             const params = req.searchParams;
@@ -103,7 +102,7 @@ class PositionController {
 
     public async updateOne(req: IRequestExtended, res: Response, next: NextFunction): Promise<void> {
         try {
-            const position_id  = req._id as string;
+            const position_id = req._id as string;
             const updatesFields = req.positionToPatch!;
 
             const positionUpdated = await positionRepository.updateField({ position_id, updatesFields });
@@ -124,10 +123,10 @@ class PositionController {
 
     public async deleteOne(req: IRequestExtended, res: Response, next: NextFunction): Promise<void> {
         try {
-            const  position_id = req._id as string;
+            const position_id = req._id as string;
             const position = req.positionModel!;
 
-            const positionDeleted = await positionRepository.deleteOne( position_id );
+            const positionDeleted = await positionRepository.deleteOne(position_id);
 
             if (!positionDeleted.deletedCount) {
                 next(new ErrorHandler(
