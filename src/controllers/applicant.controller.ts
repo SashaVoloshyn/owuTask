@@ -30,7 +30,7 @@ class ApplicantController {
 
     public async updateOne(req: IRequestExtended, res: Response, next: NextFunction): Promise<void> {
         try {
-            const _id = req._id as any;
+            const _id = req._id as string;
             const applicantToSet = req.applicantToSet!;
 
             const applicantUpdated = await applicantRepository.updateOne({ _id, applicantToSet });
